@@ -8,7 +8,8 @@ Read [README.md](README.md) for the purpose and [CONTRIBUTING.md](CONTRIBUTING.m
 - Preserve explicit activation and completion conditions. Reuse existing evidence and trace changes into affected outputs.
 - Write repository docs and code in English.
 - Make changes on a branch and deliver through a pull request.
-- The owner grants standing permission to push task branches for requested work and open pull requests without asking again. Never push directly to the default branch. Push permission does not grant merge or deployment authority.
+- The owner grants standing permission to push task branches for requested work, open pull requests, and merge them automatically without asking again. Never push directly to the default branch. Deployment authority remains separate.
+- Before automatic merge, review the final change, pass relevant local validation and the `validate` CI check on the current PR revision, and resolve conflicts and actionable review findings. Failed, pending, or unavailable checks block merge. Use GitHub auto-merge when available; otherwise verify the same gates before merging through the CLI. This authority covers requested work, not unrelated PRs.
 - Run `python3 scripts/validate.py`. For instruction changes, review affected scenarios using [docs/evaluation.md](docs/evaluation.md).
 - State which validation was executed. File checks and desk reviews do not prove agent behavior.
 - Keep private context and credentials out of public artifacts.

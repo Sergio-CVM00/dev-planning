@@ -23,9 +23,29 @@ Planning connects questions, alternatives, evidence, and decisions. Keep the cho
 
 This schematic illustrates the visual direction. A live HTML map with node-linked review is planned; it is not yet implemented in the published skill.
 
-## Try it
+## Install
 
-Copy the entire [`skills/dev-planning`](skills/dev-planning) directory into your agent's configured skills directory. Keep `SKILL.md`, `references/`, and the included `LICENSE` together. Follow your runtime's skill discovery instructions; runtime-specific installation and automatic activation have not been tested here.
+With Node.js, npm/npx, and Git available, run this from your project directory:
+
+```sh
+npx skills@latest add Sergio-CVM00/dev-planning --skill dev-planning
+```
+
+The installer lets you choose your agent and installation method. It supports Codex, Claude Code, OpenCode, Cursor, and other [supported agents](https://github.com/vercel-labs/skills#supported-agents).
+
+Add `--global` to make the skill available across projects:
+
+```sh
+npx skills@latest add Sergio-CVM00/dev-planning --skill dev-planning --global
+```
+
+For an explicit agent, add `--agent codex`, `--agent claude-code`, or another supported identifier. See the [installer options](https://github.com/vercel-labs/skills#options).
+
+Alternatively, copy the entire [`skills/dev-planning`](skills/dev-planning) directory into your agent's configured skills directory. Keep `SKILL.md`, `references/`, and the included `LICENSE` together.
+
+CLI discovery and project-scoped file installation were verified for Codex, Claude Code, and OpenCode. Agent activation and planning behavior remain untested; see the [installation verification](docs/installation.md).
+
+## Try it
 
 Start with a request such as:
 
