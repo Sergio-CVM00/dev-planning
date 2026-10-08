@@ -1,10 +1,27 @@
+![A thoughtful cartographer and a luminous agent drawing branching routes on a parchment map.](docs/assets/cartographer-cover.webp)
+
 # Dev Planning
+
+**Plan the route before you build.**
 
 Agent skills for planning full-stack products before implementation.
 
 The goal is to help a person or agent decide **which planning areas to cover, which planning modules are needed within each area, in what order, and at what depth**. Start from a product idea or an existing application, and leave the next vertical slice sufficiently defined for an implementation agent to build and verify it.
 
 **Status: 0.2.0 draft.** The repository currently contains one coordinating skill and three supporting references. Structure and links are validated. An independent desk review has covered the entry points; agent execution against realistic projects remains an open evaluation task. This is an evolving method, and contributions should bring concrete scenarios and evidence.
+
+## A map of decisions
+
+Planning connects questions, alternatives, evidence, and decisions. Keep the chosen route, its reason, and the next uncertainty visible.
+
+<picture>
+  <source media="(prefers-reduced-motion: reduce)" srcset="docs/assets/decision-map.svg">
+  <img src="docs/assets/decision-map.gif" width="900" alt="A conceptual decision map: define the flow before sketching a screen, retain the reason, and leave the access-rules question open.">
+</picture>
+
+[View the static map](docs/assets/decision-map.svg).
+
+This schematic illustrates the visual direction. A live HTML map with node-linked review is planned; it is not yet implemented in the published skill.
 
 ## Try it
 
