@@ -8,7 +8,7 @@ Agent skills for planning full-stack products before implementation.
 
 The goal is to help a person or agent decide **which planning areas to cover, which planning modules are needed within each area, in what order, and at what depth**. Start from a product idea or an existing application, and leave the next vertical slice sufficiently defined for an implementation agent to build and verify it.
 
-**Status: 0.2.0 draft.** The repository currently contains one coordinating skill and three supporting references. Structure and links are validated. An independent desk review has covered the entry points; agent execution against realistic projects remains an open evaluation task. This is an evolving method, and contributions should bring concrete scenarios and evidence.
+**Status: 0.2.0 draft.** The repository currently contains one coordinating skill and five supporting references. Structure and links are validated. The skill adds selective decision ownership, persistent session maps, and requirement-to-verification traceability. Behavioral evidence and its limits are recorded in the [evaluation guide](docs/evaluation.md). This is an evolving method, and contributions should bring concrete scenarios and evidence.
 
 ## A map of decisions
 
@@ -21,7 +21,7 @@ Planning connects questions, alternatives, evidence, and decisions. Keep the cho
 
 [View the static map](docs/assets/decision-map.svg).
 
-This schematic illustrates the visual direction. A live HTML map with node-linked review is planned; it is not yet implemented in the published skill.
+This schematic illustrates the visual direction. The skill now defines a persistent map and derived visual review contract. A live HTML map generator with node-linked editing is not implemented in the published skill.
 
 ## Install
 
@@ -43,7 +43,7 @@ For an explicit agent, add `--agent codex`, `--agent claude-code`, or another su
 
 Alternatively, copy the entire [`skills/dev-planning`](skills/dev-planning) directory into your agent's configured skills directory. Keep `SKILL.md`, `references/`, and the included `LICENSE` together.
 
-CLI discovery and project-scoped file installation were verified for Codex, Claude Code, and OpenCode. Agent activation and planning behavior remain untested; see the [installation verification](docs/installation.md).
+CLI discovery and project-scoped file installation were verified for Codex, Claude Code, and OpenCode. That installation check does not prove activation in every harness; see the [installation verification](docs/installation.md) and the separate [behavioral evaluation](docs/evaluation.md).
 
 ## Try it
 
@@ -56,6 +56,16 @@ Or:
 > Use dev-planning to add team invitations to this existing application. Inspect the current roles, data model, and delivery process. Inherit valid decisions and plan the affected slice.
 
 Provide the request and available project evidence. The skill distinguishes a discussion, a saved plan, tracker publication, and authorized implementation. A ready plan does not grant permission to build, merge, or deploy.
+
+## Planning with selective autonomy
+
+The agent investigates accessible facts and settles delegated, reversible internal details within agreed constraints. The decision-maker retains choices affecting scope, user-visible behavior, UX, access policy, privacy, material cost, or difficult-to-reverse commitments. Proposals and unverified assumptions never silently become confirmed requirements.
+
+For saved or multi-session work, maintain a readable index of authoritative decisions, dependencies, unresolved questions, and the next slice. Resume from those records; a changed decision makes dependent outputs and the previous readiness review stale until reconciled. Preserve the project's canonical format, including JSON where required, and derive visual views instead of duplicating editable truth.
+
+The output connects requirements and decisions to scenarios, slices, acceptance criteria, issues, and planned verification. Planning tickets retain a draft/planned/backlog status. READY TO BUILD describes technical readiness and never starts implementation or adds an execution-ready label by itself.
+
+See [decision policy](skills/dev-planning/references/decision-policy.md) and [planning sessions](skills/dev-planning/references/planning-sessions.md). These adapt Matt Pocock's planning patterns without requiring his full skill package, a particular tracker, or a graph runtime.
 
 ## Four separate decisions
 

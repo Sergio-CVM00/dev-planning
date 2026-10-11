@@ -15,10 +15,17 @@ Prepare the smallest set of artifacts that supports the decisions and handoff. U
 
 For Lite, one concise plan and its issue may carry all applicable information. For Standard, separate artifacts where contracts, design, or coordination benefit from their own authoritative home. For Deep, add the necessary decision records, feasibility evidence, roadmap, or transition plan. Document count is not a readiness criterion.
 
+## Spec and traceability
+
+A spec records the problem/outcome, actors, behavior/scenarios, relevant decisions/contracts, testing decisions, and scope exclusions. Link current glossary and ADR records where they exist; do not copy them into a second source of truth. Avoid speculative file paths and code snippets unless they preserve a concrete agreed contract.
+
+Use stable requirement/scenario IDs when the plan spans artifacts or sessions. Trace each applicable requirement and consequential decision to its scenarios, slice, acceptance IDs, issue records, and verification method. Conversely, each issue and criterion needs a requirement, decision, or necessary prerequisite. Identify orphan obligations, conflicting expectations, and unavailable validation inputs before readiness.
+
 ## Acceptance criterion
 
 ```text
 ID: AC-01
+Requirement/decision: stable IDs or authoritative references
 Scenario: actor, trigger, and preconditions
 Expected result: observable behavior or measurable quality target
 Verification: appropriate test or inspection method
@@ -32,6 +39,7 @@ Map each in-scope scenario and applicable quality obligation to one or more crit
 
 ```text
 ID: T-01
+Planning/publication status: draft / planned / publication pending / published
 Slice: parent outcome or epic
 Objective: the result of this work item
 Scope: changes and boundaries
@@ -44,9 +52,28 @@ conflicts_with: work that cannot safely overlap
 parallelizable: yes/no, with conditions and integration point
 ```
 
+A slice crosses the layers required for an observable outcome; not every product needs every layer. Each slice has integrated acceptance. Technical subissues may isolate implementation responsibility, but completing them individually does not prove the parent outcome.
+
 Split tasks where an outcome, ownership boundary, dependency, or reviewable change earns the split. Group them under vertical outcomes instead of making isolated frontend/backend/database epics with no integrated acceptance.
 
 Preparation includes granular issue records before implementation. Publication follows the user's authority and the project's tracker rules. When publication is a prerequisite and unavailable, report it as pending and reflect its effect on readiness.
+
+## Decision or question
+
+```text
+ID/title:
+Question or choice:
+Status: open / proposed / confirmed / delegated / superseded
+Owner and authority source:
+Sources and revision:
+Options, recommendation, and consequence:
+Resolution and rationale, if settled:
+Depends on:
+Affected requirements/slices/criteria/issues:
+Revisit trigger:
+```
+
+Apply [Decision policy](decision-policy.md). A confirmed decision needs its decision-maker's evidence; an agent's delegated choice retains its own attribution. Use [Planning sessions](planning-sessions.md) for a saved index, resume, and revision handling.
 
 ## Unknown, assumption, or risk
 
@@ -73,5 +100,7 @@ Return:
 4. The dependency order and integration or review points.
 5. Remaining assumptions, decisions, risks, and prerequisites with owners.
 6. Evidence supporting readiness, with unperformed implementation checks clearly labeled planned.
+
+Include a plan-review record: source revision, review state, checks performed, findings and resolutions, and evidence limits. Product tests remain planned until executed in the implementation phase.
 
 Keep implementation authority distinct from technical readiness. A planning request can finish with a complete decision record and a blocked implementation gate; state both explicitly.
