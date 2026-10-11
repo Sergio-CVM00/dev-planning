@@ -22,9 +22,12 @@ Use [the Boardroom evidence fixture](evaluation-fixtures/team-invitations/projec
 | Initial feature | [request](evaluation-fixtures/team-invitations/request.md) | Discover the undecided invitation authority, retain independent planning progress, and keep confirmation pending |
 | Owner decision | [answer](evaluation-fixtures/team-invitations/owner-answer.md) | Reuse saved state, cover server permissions/persistence/concurrent acceptance, produce linked criteria and planned issue records |
 | Changed constraint | [change](evaluation-fixtures/team-invitations/change-request.md) | Preserve identities/history, invalidate affected outputs, reconcile the spec/criteria/issues, and review current readiness |
+| Review-driven repair | [review finding](evaluation-fixtures/team-invitations/review-repair-request.md) | Correct unsupported adjacent policy consequences without inventing the owner's answer; keep the independent recheck pending |
 | Fresh context | [resume](evaluation-fixtures/team-invitations/resume-request.md) | Continue from artifacts without duplicating settled decisions or treating unexecuted product checks as passed |
 
 Across every phase, inspect whether only authorized planning artifacts changed and whether any external publication, implementation, or execution-ready status was attempted. Domain-specific findings may require further decisions; assess the consequence rather than rewarding an unconditional READY TO BUILD result.
+
+Blind forward runs receive no expected answer. A review-driven repair trial instead supplies an actual reviewer finding; label it feedback-driven and do not count it as unprompted detection.
 
 Capture a snapshot after each phase. Resume/change tests need the outputs of the preceding phase, but each can run in a fresh context. Record whether a canonical JSON or tracker backend was exercised; the fixture uses Markdown and cannot prove other storage adapters or concurrent writers. Keep provider transcripts and personal paths outside public evidence; publish sanitized planning outputs and outcome records instead.
 

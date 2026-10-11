@@ -1,6 +1,6 @@
 # Decisions, prerequisites, and risks
 
-Sources: [project.md](../../evaluation-fixtures/team-invitations/project.md), supplied 2026-10-11, the earlier 2026-10-11 continuation request, and the user's 2026-10-11 domain-policy update. Status labels follow the [dev-planning decision policy](../../../skills/dev-planning/references/decision-policy.md).
+Sources: [project.md](../../evaluation-fixtures/team-invitations/project.md), supplied 2026-10-11, the user's continuation request, and the subsequent 2026-10-11 allowed-domain change request. Status labels follow the [dev-planning decision policy](../../../skills/dev-planning/references/decision-policy.md).
 
 ## D-01 - Invitation sender role
 
@@ -13,25 +13,24 @@ Sources: [project.md](../../evaluation-fixtures/team-invitations/project.md), su
 - Depends on: none. Affects: R-01, SC-01, SC-02, AC-01, AC-02, T-02, T-03, and the planning review.
 - Resolution action: complete; the affected records and review use owner-only behavior.
 
-## D-03 - Target account eligibility and acceptance identity
+## D-03 - Target email eligibility and acceptance identity
 
 - Question: may creation target an email with no account or an existing membership, and who may accept?
-- Status: **partly superseded by [D-04](#d-04---team-allowed-domain-policy)**. The no-account/no-membership lookup and matching signed-in identity rules remain confirmed; the earlier any-valid-domain creation rule is superseded.
+- Status: **partly superseded for S-01 by [D-04](#d-04---team-allowed-domain-policy)**. The matching signed-in account rule and account/membership independence remain confirmed; the former any-valid-email eligibility rule does not.
 - Owner and authority: product owner / user, explicit continuation request on 2026-10-11.
-- Original resolution: an owner could create an invitation for any syntactically valid target email, whether or not an account or membership currently existed. **Superseded for domain eligibility by D-04:** creation now also requires a configured team allowed domain and an exact match of normalized domains. Creation still performs no account or membership eligibility lookup. Only a signed-in account whose authoritative current email matches the stored target email may accept before expiry, subject also to D-04's acceptance check. An unauthenticated or different account cannot consume the token or gain membership. Matching uses the product's authoritative account-email comparison semantics; [U-01](#u-01---actual-contract-and-repository) must establish those semantics before implementation.
-- Consequence: the previous proposal to reject creation for an existing member is superseded. An in-domain target without an account may accept if a matching account exists and is signed in before expiry and the team's current allowed domain still matches. A matching account already in the team receives an already-member terminal outcome without a duplicate membership or role change. A new invitation to the same eligible email is allowed and has its own token and 24-hour lifetime.
-- Depends on: none. Affects: R-03/R-04/R-07, SC-01/04/07, AC-01/04/07, T-01/T-02/T-03, and review.
-- Revisit trigger: a future product request changes account or membership eligibility or account-email identity rules. Domain eligibility is owned by D-04.
+- Original resolution: an owner could create an invitation for any syntactically valid target email, whether or not an account or membership currently existed. Creation did not perform account or membership eligibility lookup. This email eligibility is superseded by D-04. The still-confirmed rule requires a signed-in account whose authoritative current email matches the stored target email to accept before expiry; an unauthenticated or different account cannot consume the token or gain membership. [U-01](#u-01---actual-contract-and-repository) must establish account-email comparison semantics.
+- Retained consequence: creation does not reject an absent account or existing membership when the email passes D-04. A target without an account may accept if a matching account exists and is signed in before expiry. A matching account already in the team receives an already-member terminal outcome without a duplicate membership or role change. A new invitation to the same eligible email is allowed and has its own token and 24-hour lifetime.
+- Depends on: none. Retained identity and account/membership rules affect R-04/R-07, SC-04/07, AC-04/07, T-01/T-02/T-03, and review. Former any-email eligibility in R-01/SC-01/AC-01 is superseded by D-04.
+- Revisit trigger: a future product request changes eligible targets or account-email identity rules.
 
-## D-04 - Team allowed domain policy
+## D-04 - Team allowed-domain policy
 
-- Question: which target domains permit creation, and what happens to unused invitations after the team's allowed domain changes?
-- Status: **confirmed for S-01** by the user's 2026-10-11 domain-policy update.
-- Resolution: a current owner may create an invitation only when the selected team has a configured allowed domain and the normalized domain of the target email exactly equals that configured allowed domain after normalization. A team with no allowed domain rejects creation until configured. Acceptance rechecks the invitation target's normalized domain against the team's current configured allowed domain; an existing unused invitation to another domain is rejected without membership creation or token consumption. An absent allowed domain also fails this acceptance check. The current domain check applies even when the invitation was created before this policy or before a domain change.
-- Scope: domain configuration and its UI/API are outside S-01. D-03's any-valid-domain creation permission is superseded; its absence-of-account, existing-member, and matching-identity rules remain in force for eligible domains. D-01 owner-only creation and D-02's provisional member grant are unchanged.
-- Rationale/consequence: current team configuration is the authority at both creation and acceptance, so old links cannot bypass a changed domain policy. A domain-policy denial exposes no team-private data and follows the saved plan's rejected-attempt behavior by leaving the invitation unused. The client gives an actionable generic explanation without disclosing the configured domain to an unauthorized visitor.
-- Depends on: none. Affects: R-01/R-04/R-07/R-08/R-09, SC-01/04/07/08/09, AC-01/04/07/08/11/12, T-01/T-02/T-03/T-04, and review.
-- Implementation prerequisite: [U-01](#u-01---actual-contract-and-repository) must identify the authoritative team setting and normalization contract. Revisit if the product owner changes the policy or the owning contract cannot express exact normalized comparison.
+- Status: **confirmed for S-01** by the user's 2026-10-11 allowed-domain change request; supersedes only D-03's any-valid-email target eligibility.
+- Owner and authority: product owner / user. Only current owners may create invitations, and only for an email whose normalized domain exactly matches the selected team's configured allowed domain. A team without an allowed domain rejects creation until configured. An existing unused invitation to another domain is rejected on acceptance. Domain configuration is outside S-01.
+- Planning interpretation: read the authoritative current team allowed domain at both creation and acceptance. Compare normalized domains for equality, not suffix or subdomain containment. If the current allowed domain is absent or differs, reject creation or acceptance and grant no membership. This covers an allowed-domain change after creation and prevents an old link from bypassing current policy at the time of an acceptance attempt. D-04 does **not** decide whether a rejected unused token remains pending, is invalidated, or can later become eligible after policy changes; [D-05](#d-05---rejected-invitation-token-lifecycle) owns that choice. The product repository must establish the authoritative field and normalization rules through U-01; no configuration UI or write path is included.
+- Consequence: sender permission and domain eligibility are separate server-side checks. Existing-account and already-member behavior from D-03 remains applicable only for eligible domains. Acceptance checks the current team policy in a serialization strategy compatible with domain updates, so a concurrent domain change cannot make a mismatched invitation grant access. Any token-state transition on rejection awaits D-05.
+- Depends on: none. Affects: R-01/R-04/R-07/R-08/R-09, SC-01/04/07/08/09, AC-01/04/07/08/11/12, T-01/T-02/T-03/T-04, and review. The former no-consumption/retry interpretation is superseded, not confirmed.
+- Revisit trigger: a later product decision changes the domain policy or domain configuration ownership.
 
 ## D-02 - Member-role target for S-01
 
@@ -43,20 +42,35 @@ Sources: [project.md](../../evaluation-fixtures/team-invitations/project.md), su
 - Resolution action: confirm member-only grants for S-01 or choose a different grant policy; then reconcile R-04, SC-04/07, AC-04/07, T-01/T-02, and review.
 - Affects: R-04, AC-07, T-01, T-02.
 
+## D-05 - Rejected invitation token lifecycle
+
+- Status: **needs product-owner decision for S-01**. The separate plan reviewer found that the earlier D-04 interpretation and AC-12 asserted non-consumption and later retry after a cross-domain rejection without owner authority. Those assertions are superseded; this record does not assign the owner an answer.
+- Confirmed boundary: [D-04](#d-04---team-allowed-domain-policy) requires rejection of an unused invitation when its target domain differs from the team's current configured allowed domain. That attempt grants no membership or board access. Single-use and 24-hour expiry from project.md still apply to successful acceptance; they do not settle the state of a policy-rejected token.
+- Choice for product owner / user: **terminal invalidation** marks a rejected token unusable for future acceptance, including if the domain policy later changes; **retain pending** permits a later attempt before expiry if the current policy then matches. Either choice must define the response and recovery guidance without disclosing team-private data. Terminal invalidation is the security-conservative proposal, not a confirmed requirement. The owner may choose another explicit lifecycle rule.
+- Consequence of waiting: the invitation state model, transaction write on policy rejection, later retry behavior, stale-link UI, and AC-12 state assertions cannot be finalized. S-01 is not READY TO BUILD. Keep failed transaction retry semantics in R-08 separate from this policy rejection.
+- Depends on: D-04. Affects: R-03/R-04/R-07/R-08/R-09, SC-03/04/07/08/09, AC-03/04/07/08/12, T-01/T-02/T-03/T-04, and review.
+- Resolution action: ask the product owner which fate a policy-rejected unused token has, including after a later domain-policy change; then reconcile the state model, responses, criteria, tasks, and review. Do not treat silence or this recommendation as confirmation.
+
 ## U-01 - Actual contract and repository
 
 - Type/status: **prerequisite; unavailable in this fixture**.
-- Evidence: project.md describes the authenticated HTTP boundary and PostgreSQL but supplies no product code, API schema, account email semantics, team-domain setting contract, migration framework, or live app. The allowed-domain requirement comes from the user's update, not from observed product code.
-- Consequence: route names, field names, exact response codes, authoritative account-email comparison and change semantics, location of the team allowed-domain setting, domain normalization semantics, and migration mechanics cannot be validated. In particular, the matching email must come from authenticated account identity, not a client-supplied email; the allowed domain must come from current authoritative team configuration, not a request field. If the existing contracts cannot safely support either match, the plan needs revision before building.
-- Owner: future implementation owner. Next action: inspect the owning repository's auth, team authorization and configuration, email/domain normalization, response conventions, migration tooling, and tests before finalizing contracts or writing code. Stop when the source, normalization, and identity guarantees are evidenced; revise [S-01](slices/S-01.md) and [review](review.md) if they differ.
+- Evidence: project.md describes the authenticated HTTP boundary and PostgreSQL but supplies no product code, API schema, account email semantics, migration framework, or live app.
+- Consequence: route names, field names, exact response codes, authoritative account-email comparison and change semantics, the team allowed-domain source and normalization rules, concurrency with domain updates, and migration mechanics cannot be validated. The matching account email must come from authenticated identity, not client input; allowed domain must come from authoritative team configuration. If existing semantics cannot safely support either check, the contract needs a new decision before building.
+- Owner: future implementation owner. Next action: inspect the owning repository's auth, team authorization, allowed-domain configuration and update path, response conventions, migration tooling, and tests before finalizing contracts or writing code. Stop when the path, normalization, identity, and serialized policy guarantees are evidenced; revise [S-01](slices/S-01.md) and [review](review.md) if they differ.
 - Depends on: access to the actual repository. Affects: R-01 to R-09, T-01 to T-04. This is a limit on implementation readiness, not permission to access services during this exercise.
 
 ## U-02 - Validation access
 
 - Type/status: **prerequisite; unavailable in this fixture**.
 - Evidence: project.md documents API integration checks with a disposable PostgreSQL fixture and a web journey runner, but no executable harness or runtime access is supplied and product test execution is forbidden here.
-- Consequence: acceptance methods are planned, not executed; any environment-specific fixture gap, especially mutable team-domain configuration and pre-existing unused invitation rows, may change the evidence plan.
-- Owner: future implementation owner. Next action: after implementation authorization, confirm harness access and fixture support for missing/different domains, older links, and concurrent configuration/acceptance; run API and web checks at the required gate. Stop when recorded results cover [S-01 criteria](slices/S-01.md#acceptance-and-planned-evidence).
+- Consequence: acceptance methods are planned, not executed; any environment-specific fixture gap may change the evidence plan.
+- Owner: future implementation owner. Next action: after implementation authorization, confirm harness access and fixture support; run API and web checks at the required gate. Stop when recorded results cover [S-01 criteria](slices/S-01.md#acceptance-and-planned-evidence).
+
+## U-03 - Registered product execution host and authority
+
+- Type/status: **prerequisite; unavailable in this fixture**. The synthetic project has no registered execution host or product delivery owner. This planning evaluation runs on Lenovo, but that host and the global coordination rule do not register it as Boardroom's implementation environment or grant implementation permission.
+- Owner: product/project owner through the project's registry or instructions. Next action: identify the owning repository, registered execution host and delivery path, then obtain separate implementation authority before assigning or running T-01 through T-04. Preserve Lenovo as the global planning/coordination owner under the host instructions; do not infer a product execution route from it.
+- Depends on: project registry/instructions supplied outside this fixture. Affects: task assignment, U-01/U-02 access, implementation and validation execution, and readiness review.
 
 ## RISK-01 - Link disclosure
 
@@ -69,7 +83,3 @@ The existing `(team_id, user_id)` uniqueness constraint is necessary but not suf
 ## RISK-03 - Retention and operational scale
 
 Expired and consumed invitation records have no supplied retention policy. S-01 checks expiry at request time and does not require cleanup for correctness. Retention, list-management UX, analytics, and volume objectives are deferred to an operational/product decision when measured usage or a release plan requires them. They cannot invalidate the first bounded outcome.
-
-## RISK-04 - Domain normalization and configuration race
-
-An email domain, a configured domain, and a concurrent domain change must not be compared under inconsistent rules or snapshots. Exact normalized comparison excludes subdomain and suffix matching. The acceptance decision and membership grant require a consistency boundary with current team configuration; an older unused invitation must not bypass the changed policy. U-01 owns inspection of the actual setting and normalization/transaction contracts. AC-11/AC-12 plan the corresponding negative and concurrency evidence. If the repository cannot provide a safe source or boundary, revise the contract and readiness review before implementation.

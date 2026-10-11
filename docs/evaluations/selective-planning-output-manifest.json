@@ -1,37 +1,37 @@
 [
   {
     "artifact": "docs/evaluations/selective-planning-output/decisions.md",
-    "observed_sha256": "54d49d8f46182cf4222da337a9c3a6c3047c3ad71dbf0079dc6bbcc9cb4ed540",
-    "published_sha256": "08da6f854b04c8c373f0d503b75264a8c2c16a530bcd1f5322ac22e263cbe3a3"
+    "observed_sha256": "6a2ba954ff41b7000333a1489f3be3d6207267b851c02de831698e581b54973d",
+    "published_sha256": "b10e49056120d813bca8a622171e3e2a8a3809061e7ad57b362940a381b37c67"
   },
   {
     "artifact": "docs/evaluations/selective-planning-output/index.md",
-    "observed_sha256": "fa383c6a123f040d30c1753e3bc649e7683f35b20ebf8574d7c38a6ab1702678",
-    "published_sha256": "95a6aa51da02f248ec260ac79a73872aa1d6dc8eb04c611abcf730a9c3f248ce"
+    "observed_sha256": "f1cf0da213dfbbde03d05f290f007c8ec02ab05f83f75bb1de9f69823eba6320",
+    "published_sha256": "ce08c635c94bf6166a9acd0b4c79a7b56dd41ed1f0956b8185797f3b9adcbebd"
   },
   {
     "artifact": "docs/evaluations/selective-planning-output/product-system.md",
-    "observed_sha256": "71b3972df09fef0539e8a2b98a94843553d36c9eca943d0aef5de2f524a39e1e",
-    "published_sha256": "4892d9c16db3a87523d23706d368dcbf25b7a85df9d8f59e3d9a415a5aaab469"
+    "observed_sha256": "de1bfac058f4c851c21ab22a5fbbf6ae11fe66cf9b79cb395e95b532541473ac",
+    "published_sha256": "142e4f1912a2f3d61d7d253b9c7259409afbfac54d34bd50309ef8c0ab58a37c"
   },
   {
     "artifact": "docs/evaluations/selective-planning-output/review.md",
-    "observed_sha256": "b1303a731c6f972022dc109ba8b0c1810b090d4062ccd122da7d1007625741ad",
-    "published_sha256": "08231181fe2790d495ed355183deb99050b92aa598aa7f01e048e00a351a0ad5"
+    "observed_sha256": "f0d1af89a5c2fbb398995ee895aa6ffbc7830a875163be18f58f3e8cc7bea59a",
+    "published_sha256": "9d23cfaba0c69c20e13a3c839c800820cb4bded959fb420a27dbfb327a698326"
   },
   {
     "artifact": "docs/evaluations/selective-planning-output/roadmap.md",
-    "observed_sha256": "1fc39086c5b0e4ba2aac56a85d2c66b821955879a57614a3c58c3653f4933bb4",
-    "published_sha256": "0149cf633f965c145fdb939bf58d1584c85093867b57854ab6207fd23a29152c"
+    "observed_sha256": "79287cb7e3b4f46f88533ad0eb8a0ffe323877771935be91f643e94e9f235189",
+    "published_sha256": "974effdaab9caba526475bba9cd27ab580dc04207a953f5980ccfa9d3c0bb075"
   },
   {
     "artifact": "docs/evaluations/selective-planning-output/slices/S-01.md",
-    "observed_sha256": "4b6650c32efd331f2c86cf5e93eb6fc48556cefa04341f64f3c019fd958f7d8d",
-    "published_sha256": "598c4b5a6002517aa462b2e71ec2e2b9e4d98131ac36b28d2c055dfad3a18e6f"
+    "observed_sha256": "264385b83eff66f795e9c3822de84812d98933014ab051b56a86efd1a684d957",
+    "published_sha256": "865590c1334b45b06083488cf7415275e70f79d70fdb9cf057a029fb6865ed93"
   },
   {
     "artifact": "docs/evaluations/selective-planning-output/tasks.md",
-    "observed_sha256": "6203e492dd05a0af15055b972b022d9da2aac23fcd76e1dabfa30f8b97d6c63a",
-    "published_sha256": "6203e492dd05a0af15055b972b022d9da2aac23fcd76e1dabfa30f8b97d6c63a"
+    "observed_sha256": "2715b0b1f6b90c1546e94015d8c7dbb8e2ae15c3708f0f5d6a45bc8ae3603f41",
+    "published_sha256": "2715b0b1f6b90c1546e94015d8c7dbb8e2ae15c3708f0f5d6a45bc8ae3603f41"
   }
 ]

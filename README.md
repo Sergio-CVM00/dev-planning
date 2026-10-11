@@ -65,6 +65,8 @@ For saved or multi-session work, maintain a readable index of authoritative deci
 
 The output connects requirements and decisions to scenarios, slices, acceptance criteria, issues, and planned verification. Planning tickets retain a draft/planned/backlog status. READY TO BUILD describes technical readiness and never starts implementation or adds an execution-ready label by itself.
 
+Consequential plans involving access/security, data lifecycle, or difficult-to-reverse transitions require a reviewer in a separate context. The drafting agent repairs actionable findings and the repair is rechecked; unavailable required review keeps readiness blocked.
+
 See [decision policy](skills/dev-planning/references/decision-policy.md) and [planning sessions](skills/dev-planning/references/planning-sessions.md). These adapt Matt Pocock's planning patterns without requiring his full skill package, a particular tracker, or a graph runtime.
 
 ## Four separate decisions
