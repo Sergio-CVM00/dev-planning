@@ -12,7 +12,7 @@ Use this policy when deciding whether to inspect evidence, choose a detail, or a
 
 ## What the agent may settle
 
-Within the authorized planning work, choose low-impact, reversible internal details that preserve the requested behavior and existing contracts. Examples include grouping a plan's sections, reusing an established testing interface, or ordering independent investigations. Record details only when another session or implementer needs them.
+Within the authorized planning work, choose low-impact, reversible internal details that preserve the requested behavior and existing contracts. Examples include grouping a plan's sections, reusing an established testing interface, or ordering independent investigations. Record details only when another session or implementer needs them. Delegation must have a source that covers this class of choice and its scope. Permission to plan, silence, and a least-privilege recommendation do not delegate product behavior or access policy; keep such a choice proposed until its decision-maker or an applicable standing contract settles it.
 
 A choice is not delegated merely because code can be reverted. User-visible behavior, data loss, contracts, recurring cost, and privacy can have lasting consequences. Honor explicit preferences even when an alternative looks cheaper or simpler.
 
@@ -28,6 +28,6 @@ Continue investigations and specifications that do not depend on the answer. Kee
 
 Review whether every applicable obligation has observable acceptance and a feasible verification path. Consider normal behavior, permissions, persistence, errors, recovery, accessibility, operations, and domain-specific constraints where affected; the coverage checklist decides applicability.
 
-Planning review proves only that the plan is sufficiently specified for its next permitted action. Tests, screenshots, CI checks, and product verification that have not run remain **planned**. Describe the intended environment, fixtures, and evidence; do not claim those results passed.
+Planning review proves only that the plan is sufficiently specified for its next permitted action. Report a complete specification separately from the implementation-readiness gate. Missing evidence needed to validate a contract, permission guarantee, or required verification prerequisite blocks that gate; do not qualify READY TO BUILD as "ready as a spec" to bypass it. Unexecuted implementation tests alone are not a planning blocker when the verification method and its prerequisites are evidenced. Tests, screenshots, CI checks, and product verification that have not run remain **planned**. Describe the intended environment, fixtures, and evidence; do not claim those results passed.
 
 Save, publish, implement, merge, and deploy are distinct actions. Resolve each from the user's request and project instructions. A READY TO BUILD status expresses technical readiness. It neither starts implementation nor adds an execution-ready tracker label. Where the tracker has no planning status, use its draft/backlog convention or an explicit planning-only body; do not invent a scheduler integration.

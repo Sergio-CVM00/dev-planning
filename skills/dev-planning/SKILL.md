@@ -112,13 +112,13 @@ Review the complete slice against these checks:
 - Acceptance criteria cover the slice and can be verified with identified environments, data, and access.
 - Requirements and decisions trace through scenarios, criteria, slices, and tasks to planned verification. Tasks cover the required changes; prerequisites, conflicts, and implementation order are explicit and acyclic.
 - Project-required planning reviews and tracker publication are complete.
-- No unresolved unknown can invalidate this slice, its contracts, or its verification.
+- No unresolved unknown can invalidate this slice, its contracts, or its verification. A proposal about access or product behavior is not a delegated decision without an authority source. Missing required contract/validation evidence cannot be deferred to implementation merely to pass this gate.
 
 Return one planning status:
 
 - **READY TO BUILD:** every applicable check passes with evidence.
 - **NEEDS DECISION:** a product or technical choice needs an identified decision-maker. Name the options, consequence, and next action.
-- **BLOCKED:** a required prerequisite or source is unavailable. State what is missing and which independent planning work is complete.
+- **BLOCKED:** a required prerequisite or source is unavailable, even if the specification documents are complete. State what is missing and which independent planning work is complete.
 
 Report implementation authority separately. A ready plan is a technical handoff, not permission to implement, merge, or deploy. If the gate fails, return to the responsible level, update dependent artifacts, and rerun the affected checks.
 
