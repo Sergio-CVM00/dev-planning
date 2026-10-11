@@ -67,13 +67,15 @@ Status: open / proposed / confirmed / delegated / superseded
 Owner and authority source:
 Sources and revision:
 Options, recommendation, and consequence:
+Confirmed boundary: what the authority source actually establishes
+Adjacent consequences: confirmed / delegated / proposed, each with its source
 Resolution and rationale, if settled:
 Depends on:
 Affected requirements/slices/criteria/issues:
 Revisit trigger:
 ```
 
-Apply [Decision policy](decision-policy.md). A confirmed decision needs its decision-maker's evidence; an agent's delegated choice retains its own attribution. Use [Planning sessions](planning-sessions.md) for a saved index, resume, and revision handling.
+Apply [Decision policy](decision-policy.md). Split a record when its parts have different authority: a confirmed heading must not smuggle proposed lifecycle/retry/recovery behavior into a requirement or criterion. A confirmed decision needs its decision-maker's evidence; an agent's delegated choice retains its own attribution. Use [Planning sessions](planning-sessions.md) for a saved index, resume, and revision handling.
 
 ## Unknown, assumption, or risk
 

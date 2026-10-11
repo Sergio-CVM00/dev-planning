@@ -101,7 +101,7 @@ For coordinated work, record `depends_on`, `touches`, `conflicts_with`, and `par
 
 ## 7. Ready to Build
 
-Review the plan against its sources, not just its own summary. Check for missing requirements, contradictory decisions, unsupported assumptions, stale inheritance, impossible verification, orphan criteria/tasks, and dependency cycles. Use a separate review pass for a substantial plan or when the project requires it; structural file checks cannot establish semantic completeness.
+Review the plan against its sources, not just its own summary. Check for missing requirements, contradictory decisions, unsupported assumptions, stale inheritance, impossible verification, orphan criteria/tasks, and dependency cycles. For a consequential plan (access/security, data lifecycle, costly-to-reverse transitions) or when the project requires it, require a reviewer in a separate context: an approved independent agent or a human reviewing the sources. The drafting agent's self-review does not satisfy this gate. For other substantial plans use a separate review pass proportional to risk. If the required reviewer is unavailable, keep review pending and readiness blocked; do not invent review evidence. Resolve actionable findings in affected records and recheck the repair. Structural file checks cannot establish semantic completeness.
 
 Review the complete slice against these checks:
 
