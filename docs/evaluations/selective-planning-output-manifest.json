@@ -1,0 +1,37 @@
+[
+  {
+    "artifact": "docs/evaluations/selective-planning-output/decisions.md",
+    "observed_sha256": "8c833329e2c4e2a1ca80bc7705eb5666a01c89a2f803fc95e3db05f04cc25498",
+    "published_sha256": "773826190db00c03591a8b11c12e883c704418e70b63b3e45f7b381dae0228c7"
+  },
+  {
+    "artifact": "docs/evaluations/selective-planning-output/index.md",
+    "observed_sha256": "9f9b76a62242bca8e0997a352f53c992308b3d6975cebe6d97f5fc124e2d1cf0",
+    "published_sha256": "e27d366d9b03d914c60b1a4ca8c2e1eb7609e92efcc553665ee79e5cec180999"
+  },
+  {
+    "artifact": "docs/evaluations/selective-planning-output/product-system.md",
+    "observed_sha256": "eceab66842c616384caa87cf27a8c975f07d08ebcbf31b162b88fefde9f5251c",
+    "published_sha256": "ac3f8ba65d005ac78cd885af081a14ca6cf4436d9b13d12834fb91b13d8d0a62"
+  },
+  {
+    "artifact": "docs/evaluations/selective-planning-output/review.md",
+    "observed_sha256": "f4bb227c9f9ffd3fe9313e73ada1fcc212594f8f72ba6e307916ba5118e3b325",
+    "published_sha256": "c61badb066ec54ac058de0bd67618ff7ebc1bd4d76e093945f2d48f675ee1502"
+  },
+  {
+    "artifact": "docs/evaluations/selective-planning-output/roadmap.md",
+    "observed_sha256": "c226c345b445b581b31848f59f0183a83f07d7d68593660a4661bee6b306ea7c",
+    "published_sha256": "fe09af7ae67f662651db78dd4a3f13a091badb0989e09b422d6114d37224e954"
+  },
+  {
+    "artifact": "docs/evaluations/selective-planning-output/slices/S-01.md",
+    "observed_sha256": "f43b642d0ba74530908de0d9332051629aca85fdc1b9480aef4bdd170b1b76f3",
+    "published_sha256": "3b09ce90c6c9de3c6a4f742338aa8a80bddadce75c6637a082712a789bba1244"
+  },
+  {
+    "artifact": "docs/evaluations/selective-planning-output/tasks.md",
+    "observed_sha256": "9c0373ed5dbd4629cd7961e151811517caf570c7d1022cd6653faeeeab8a4f5f",
+    "published_sha256": "9c0373ed5dbd4629cd7961e151811517caf570c7d1022cd6653faeeeab8a4f5f"
+  }
+]

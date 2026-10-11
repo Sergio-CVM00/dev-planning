@@ -5,19 +5,23 @@ description: Plan full-stack work before implementation. Use for a product idea,
 
 # Dev Planning
 
-Turn a request into an evidence-backed plan for the next vertical slice. Define the product and system enough to guide delivery; specify the next slice enough to build and verify it.
+Turn a request into an evidence-backed plan for the next vertical slice. Define the product and system enough to guide delivery; specify the next slice enough to build and verify it. Finish with a planning handoff; implementation is a separate authorized action.
 
 ## 0. Establish the starting point
 
 1. Read the request, applicable project instructions, and available product or repository evidence. Inspect the current behavior for a change; reproduce a reported bug when access permits.
 2. Identify the output destination and permitted actions: discussion, saved plan, tracker publication, or separately authorized implementation. Resolve the owning repository and execution environment through the project's own registry or instructions.
-3. Record facts with sources, assumptions, inherited decisions, and unknowns. Ask about missing information only when it changes scope, correctness, risk, or authority. Continue independent planning while an answer is pending.
+3. Record facts with sources, assumptions, inherited decisions, and unknowns. Apply [Decision policy](references/decision-policy.md): investigate discoverable facts yourself, resolve delegated reversible details within constraints, and ask the decision-maker about consequential choices. Continue independent planning while an answer is pending.
 4. Choose planning depth from ambiguity, impact, reversibility, and coordination:
    - **Lite:** known behavior and bounded impact; reuse valid system decisions and produce a compact slice plan.
    - **Standard:** a feature or meaningful change; inspect affected boundaries and specify the slice, contracts, acceptance, and delivery.
    - **Deep:** uncertain viability, global decisions, significant coordination, or high-consequence transition; resolve alternatives and critical unknowns before committing to the slice.
 
 Read [Full-stack coverage](references/full-stack-coverage.md) during triage. Evaluate every area once; expand the applicable areas at the level where they affect a decision. A short change can require Deep planning. A new product requires a product frame, system map, and delivery strategy even when its technology is familiar.
+
+Start with a tailored planning index: the outcome, relevant levels and coverage areas, inherited evidence, immediate questions, and next deliverable. Refine it as evidence arrives; it is not a mandatory pause for approval.
+
+For saved or multi-session planning, read [Planning sessions](references/planning-sessions.md). Resume the authoritative map and records before making a new plan. Keep the global destination visible while detailing the next slice.
 
 **Complete when:** the request type, evidence gaps, authority, initial depth, and coverage dispositions are explicit.
 
@@ -77,7 +81,7 @@ Use designs, wireframes, API schemas, or state models where they settle an imple
 
 ## 5. Acceptance / Done
 
-Give each acceptance criterion an ID, a trigger or precondition, an observable result, and a verification method. Include significant failure cases and applicable quality targets.
+Give each requirement/scenario and acceptance criterion a stable ID. Link the criterion to the requirement or decision it proves, a trigger or precondition, an observable result, and a verification method. Include significant failure cases and applicable quality targets.
 
 Identify test boundaries, environments, fixtures, and access needed to prove the slice. Reuse the project's Definition of Done; add slice-specific evidence requirements. Distinguish implementation completion, release readiness, and deployment approval.
 
@@ -89,13 +93,15 @@ Read [Planning outputs](references/planning-outputs.md) when preparing the plan,
 
 Translate the slice into ordered changes and granular issues grouped under its vertical outcome. Link each task to acceptance or a necessary prerequisite. Identify affected boundaries, dependencies, shared resources, review points, and sequencing conflicts.
 
-Publish issues when tracker writes are authorized. Otherwise prepare tracker-ready records and label publication pending. If the project requires published issues before implementation, include publication in the readiness check. Use the project's supported tracker and delivery path.
+Publish issues when tracker writes are authorized. Otherwise prepare tracker-ready records and label publication pending. Keep tickets in the project's planning status; do not apply an execution-ready label or dispatch work without separate implementation authority. If the project requires published issues before implementation, include publication in the readiness check. Use the project's supported tracker and delivery path.
 
 For coordinated work, record `depends_on`, `touches`, `conflicts_with`, and `parallelizable`. Parallel work requires compatible contracts, independent ownership, and an integration point.
 
 **Complete when:** every required change has a task or an explicitly grouped work item, dependencies are ordered, and each task has acceptance and evidence expectations.
 
 ## 7. Ready to Build
+
+Review the plan against its sources, not just its own summary. Check for missing requirements, contradictory decisions, unsupported assumptions, stale inheritance, impossible verification, orphan criteria/tasks, and dependency cycles. For a consequential plan (access/security, data lifecycle, costly-to-reverse transitions) or when the project requires it, require a reviewer in a separate context: an approved independent agent or a human reviewing the sources. The drafting agent's self-review does not satisfy this gate. For other substantial plans use a separate review pass proportional to risk. If the required reviewer is unavailable, keep review pending and readiness blocked; do not invent review evidence. Resolve actionable findings in affected records and recheck the repair. Structural file checks cannot establish semantic completeness.
 
 Review the complete slice against these checks:
 
@@ -104,15 +110,15 @@ Review the complete slice against these checks:
 - In-scope scenarios, required contracts, data changes, and material failure behavior are defined.
 - Applicable coverage areas have a disposition and supporting evidence or rationale.
 - Acceptance criteria cover the slice and can be verified with identified environments, data, and access.
-- Tasks cover the required changes; prerequisites, conflicts, and implementation order are explicit.
+- Requirements and decisions trace through scenarios, criteria, slices, and tasks to planned verification. Tasks cover the required changes; prerequisites, conflicts, and implementation order are explicit and acyclic.
 - Project-required planning reviews and tracker publication are complete.
-- No unresolved unknown can invalidate this slice, its contracts, or its verification.
+- No unresolved unknown can invalidate this slice, its contracts, or its verification. A proposal about access or product behavior is not a delegated decision without an authority source. Missing required contract/validation evidence cannot be deferred to implementation merely to pass this gate.
 
 Return one planning status:
 
 - **READY TO BUILD:** every applicable check passes with evidence.
 - **NEEDS DECISION:** a product or technical choice needs an identified decision-maker. Name the options, consequence, and next action.
-- **BLOCKED:** a required prerequisite or source is unavailable. State what is missing and which independent planning work is complete.
+- **BLOCKED:** a required prerequisite or source is unavailable, even if the specification documents are complete. State what is missing and which independent planning work is complete.
 
 Report implementation authority separately. A ready plan is a technical handoff, not permission to implement, merge, or deploy. If the gate fails, return to the responsible level, update dependent artifacts, and rerun the affected checks.
 
@@ -120,6 +126,6 @@ Report implementation authority separately. A ready plan is a technical handoff,
 
 ## Replanning
 
-Revisit the affected level when new evidence changes scope, behavior, a contract, feasibility, or the validation strategy. Trace the consequences into the slice, criteria, and tasks. After implementation, use verified results and feedback to select the next slice.
+Revisit the affected level when new evidence changes scope, behavior, a contract, feasibility, or the validation strategy. Trace the consequences into the slice, criteria, and tasks. Mark affected outputs and their previous readiness as stale until reconciled; keep stable identities and superseded decisions for history. After implementation, use verified results and feedback to select the next slice.
 
 Keep one authoritative home for each planning artifact. Link existing decisions and constraints rather than copying them into several documents. End planning when the next slice passes the gate, or when all independent planning is complete and an unresolved decision or prerequisite prevents progress. In the latter case, return NEEDS DECISION or BLOCKED with an owner and next action. Retain future uncertainty with its trigger for reconsideration.
