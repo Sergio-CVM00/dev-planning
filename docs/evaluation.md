@@ -23,6 +23,7 @@ Use [the Boardroom evidence fixture](evaluation-fixtures/team-invitations/projec
 | Owner decision | [answer](evaluation-fixtures/team-invitations/owner-answer.md) | Reuse saved state, cover server permissions/persistence/concurrent acceptance, produce linked criteria and planned issue records |
 | Changed constraint | [change](evaluation-fixtures/team-invitations/change-request.md) | Preserve identities/history, invalidate affected outputs, reconcile the spec/criteria/issues, and review current readiness |
 | Review-driven repair | [review finding](evaluation-fixtures/team-invitations/review-repair-request.md) | Correct unsupported adjacent policy consequences without inventing the owner's answer; keep the independent recheck pending |
+| Follow-up repair | [further lifecycle finding](evaluation-fixtures/team-invitations/review-followup-request.md) | Remove the remaining unsupported already-member consumption rule, retain confirmed boundaries, and leave the product decision and independent review pending |
 | Fresh context | [resume](evaluation-fixtures/team-invitations/resume-request.md) | Continue from artifacts without duplicating settled decisions or treating unexecuted product checks as passed |
 
 Across every phase, inspect whether only authorized planning artifacts changed and whether any external publication, implementation, or execution-ready status was attempted. Domain-specific findings may require further decisions; assess the consequence rather than rewarding an unconditional READY TO BUILD result.
